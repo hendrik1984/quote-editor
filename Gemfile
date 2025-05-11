@@ -29,7 +29,7 @@ gem "solid_queue"
 gem "solid_cable"
 
 # Tailwindcss
-gem 'tailwindcss-rails'
+gem "tailwindcss-rails", "~> 3.3.1"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
