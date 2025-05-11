@@ -1,0 +1,26 @@
+<%= form_with(model: quote, class: "contents mb-4") do |form| %>
+  <% if quote.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+      <h2><%= pluralize(quote.errors.count, "error") %> prohibited this quote from being saved:</h2>
+
+      <ul class="list-disc ml-6">
+        <% quote.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": quote.errors[:title].none?, "border-red-400 focus:outline-red-600": quote.errors[:title].any?}] %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "px-3 py-1 bg-green-500 text-white border border-green-500 rounded hover:bg-green-600" %>
+  </div>
+
+  <div class="inline">
+    <%= link_to "Cancel", quotes_path, class: "px-3 py-1 bg-gray-500 text-white border border-gray-500 rounded hover:bg-gray-600" %>
+  </div>
+<% end %>

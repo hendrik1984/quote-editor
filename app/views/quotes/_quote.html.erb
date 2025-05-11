@@ -1,0 +1,21 @@
+<%= turbo_frame_tag quote do %>
+  <div class="border border-gray-300 rounded-md p-4 mb-4 flex justify-between items-center">
+    <div id="<%= dom_id quote %>">
+      <div>
+        <p class="text-lg">
+          <%#= quote.title %>
+          <%= link_to quote.title, quote_path(quote),
+              data: { turbo_frame: "_top" } %>
+        </p>
+      </div>
+    </div>
+    <div class="flex space-x-2">
+      <%= link_to "Edit", edit_quote_path(quote), 
+          class: "px-3 py-1 bg-yellow-400 text-gray-800 border border-yellow-500 rounded hover:bg-yellow-600" %>
+      <%= link_to "Delete", 
+          quote, 
+          data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, 
+          class: "px-3 py-1 bg-red-500 text-white border border-red-500 rounded hover:bg-red-600" %>
+    </div>
+  </div>
+<% end %>

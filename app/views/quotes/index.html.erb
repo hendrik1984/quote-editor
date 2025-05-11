@@ -1,0 +1,42 @@
+<div class="w-full h-full mx-auto bg-white border border-gray-300 rounded-lg p-4 md:p-8 shadow-sm">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <!-- Header with title and new quote button -->
+  <div class="flex justify-between items-center mb-12">
+    <h1 class="text-3xl font-bold">Quotes</h1>
+    <%= link_to "New quote", 
+        new_quote_path, 
+        class: "px-3 py-1 bg-blue-500 text-white border border-blue-500 rounded hover:bg-blue-600",
+        data: { turbo_frame: dom_id(Quote.new)}
+      %>
+  </div>
+  
+  <%= turbo_stream_from "quotes_stream" %>
+
+  <div class="mb-4">
+    <%= turbo_frame_tag Quote.new %>
+  </div>
+
+  <%= turbo_frame_tag "quotes_list" do %>
+    <div>
+      <% if @quotes.any? %>
+        <% @quotes.each do |quote| %>
+          <%= turbo_frame_tag "quote_#{quote.id}" do %>
+            <%= render quote %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <p class="text-center my-10">No quotes found.</p>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>
+
+<!--
+in ruby this code 1 and 2 is equivalent, 1 is the original, 2 is shorthand code
+1. render partial: "quotes/quote", locals: { quote: @quote }
+2. render @quote
+-->

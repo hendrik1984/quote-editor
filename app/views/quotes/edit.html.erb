@@ -1,0 +1,15 @@
+<!--
+<div class="w-full h-full mx-auto bg-white border border-gray-300 rounded-lg p-4 md:p-8 shadow-sm">
+  <h1 class="text-3xl font-bold">Editing quote</h1>
+-->
+
+<%= turbo_frame_tag @quote do %>
+  <div class="mb-4">
+    <%= render "form", quote: @quote %>
+  </div>
+<% end %>
+
+<!--
+  <%= link_to "Back to quotes", quotes_path, class: "px-3 py-1 bg-gray-500 text-white border border-gray-500 rounded hover:bg-gray-600" %>
+</div>
+-->
