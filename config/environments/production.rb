@@ -25,10 +25,10 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
-  config.assume_ssl = true
+  config.assume_ssl = false ##### should be true, false for testing purposely
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  config.force_ssl = false ##### should be true, false for testing purposely
 
   # Skip http-to-https redirect for the default health check endpoint.
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
@@ -86,6 +86,11 @@ Rails.application.configure do
   #   "http://domain-name"
   # ]
 
+  # If you're using a specific IP address: ################for testing purposely
+  config.action_cable.url = "ws://localhost:3000/cable"
+  config.action_cable.allowed_request_origins = [
+    "http://localhost:3000",
+  ]
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
